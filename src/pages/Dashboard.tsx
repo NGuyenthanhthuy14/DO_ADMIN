@@ -1,5 +1,4 @@
 import {
-  ArrowUpOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
   ShoppingCartOutlined,
@@ -117,12 +116,6 @@ function Dashboard() {
   const stats = useMemo(
     () => [
       {
-        title: 'Doanh thu',
-        value: '-',
-        caption: 'chờ API thống kê doanh thu',
-        icon: <ArrowUpOutlined />,
-      },
-      {
         title: 'Đơn hàng',
         value: totalOrders.toLocaleString('vi-VN'),
         caption: 'tổng đơn hàng',
@@ -157,7 +150,7 @@ function Dashboard() {
 
       <Row gutter={[16, 16]}>
         {stats.map((item) => (
-          <Col xs={24} sm={12} xl={6} key={item.title}>
+          <Col xs={24} sm={12} xl={8} key={item.title}>
             <Card className="h-full shadow-admin" variant="borderless">
               <Space align="start" className="w-full justify-between">
                 <div>
