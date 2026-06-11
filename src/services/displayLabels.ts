@@ -28,6 +28,16 @@ export function shopStatusLabel(value?: string | null) {
   return labels[value || ''] || value || fallback;
 }
 
+export function storyStatusLabel(value?: string | null) {
+  const labels: Record<string, string> = {
+    draft: 'Bản nháp',
+    published: 'Đã xuất bản',
+    archived: 'Đã lưu trữ',
+  };
+
+  return labels[value || ''] || value || fallback;
+}
+
 export function orderStatusLabel(value?: string | null) {
   const labels: Record<string, string> = {
     pending: 'Chờ xác nhận',

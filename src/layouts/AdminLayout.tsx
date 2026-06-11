@@ -5,6 +5,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ProductOutlined,
+  ReadOutlined,
   ShopOutlined,
   ShoppingCartOutlined,
   TagsOutlined,
@@ -20,6 +21,7 @@ import OrdersPage from '../pages/OrdersPage';
 import ProductsPage from '../pages/ProductsPage';
 import ShopsPage from '../pages/ShopsPage';
 import SpecialtiesPage from '../pages/SpecialtiesPage';
+import SpecialtyStoriesPage from '../pages/SpecialtyStoriesPage';
 import UsersPage from '../pages/UsersPage';
 import VendorsPage from '../pages/VendorsPage';
 import { authApi } from '../services/adminApi';
@@ -63,6 +65,11 @@ const menuItems = [
     icon: <TagsOutlined />,
     label: 'Đặc sản',
   },
+  {
+    key: 'specialty-stories',
+    icon: <ReadOutlined />,
+    label: 'Story đặc sản',
+  },
 ];
 
 type AdminLayoutProps = {
@@ -87,6 +94,8 @@ function renderContent(activeKey: string) {
       return <ShopsPage />;
     case 'specialties':
       return <SpecialtiesPage />;
+    case 'specialty-stories':
+      return <SpecialtyStoriesPage />;
     default:
       return <Dashboard />;
   }

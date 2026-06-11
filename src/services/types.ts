@@ -170,6 +170,47 @@ export type Specialty = {
   status?: 'active' | 'inactive';
 };
 
+export type SpecialtyStoryStatus = 'draft' | 'published' | 'archived';
+
+export type SpecialtyStoryImage = {
+  url?: string;
+  caption?: string;
+};
+
+export type SpecialtyStory = {
+  _id: string;
+  specialty_id?: string | Specialty;
+  title: string;
+  slug?: string;
+  summary?: string;
+  content: string;
+  cover_image_url?: string;
+  images?: SpecialtyStoryImage[];
+  tags?: string[];
+  author_id?: string | AdminUser | null;
+  status?: SpecialtyStoryStatus;
+  published_at?: string | null;
+  seo_title?: string;
+  seo_description?: string;
+  view_count?: number;
+  created_at?: string;
+  updated_at?: string;
+};
+
+export type SpecialtyStoryPayload = {
+  specialty_id?: string;
+  title?: string;
+  slug?: string;
+  summary?: string;
+  content?: string;
+  cover_image_url?: string;
+  images?: SpecialtyStoryImage[];
+  tags?: string[];
+  status?: SpecialtyStoryStatus;
+  seo_title?: string;
+  seo_description?: string;
+};
+
 export type PaginationQuery = {
   limit?: number;
   page?: number;

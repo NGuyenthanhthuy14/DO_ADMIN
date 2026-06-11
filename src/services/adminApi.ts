@@ -10,6 +10,9 @@ import type {
   ProductListResult,
   Shop,
   Specialty,
+  SpecialtyStory,
+  SpecialtyStoryPayload,
+  SpecialtyStoryStatus,
   VendorStatus,
 } from './types';
 import { httpClient } from './httpClient';
@@ -209,5 +212,41 @@ export const specialtiesApi = {
   },
   async delete(id: string) {
     return unwrapResponse<unknown>(await httpClient.delete(`/specialties/${id}`));
+  },
+};
+
+export const specialtyStoriesApi = {
+  async list(params?: { status?: SpecialtyStoryStatus; specialty_id?: string }) {
+    return unwrapResponse<SpecialtyStory[] | Record<string, SpecialtyStory[]>>(
+      await httpClient.get('/specialty-stories', { params })
+    );
+  },
+  async detail(id: string) {
+    return unwrapResponse<SpecialtyStory>(
+      await httpClient.get(`/specialty-stories/${id}`)
+    );
+  },
+  async create(payload: SpecialtyStoryPayload) {
+    return unwrapResponse<SpecialtyStory>(
+      await httpClient.post('/specialty-stories', payload)
+    );
+  },
+  async update(id: string, payload: SpecialtyStoryPayload) {
+    return unwrapResponse<SpecialtyStory>(
+      await httpClient.put(`/specialty-stories/${id}`, payload)
+    );
+  },
+  async publish(id: string) {
+    return unwrapResponse<SpecialtyStory>(
+      await httpClient.patch(`/specialty-stories/${id}/publish`)
+    );
+  },
+  async archive(id: string) {
+    return unwrapResponse<SpecialtyStory>(
+      await httpClient.patch(`/specialty-stories/${id}/archive`)
+    );
+  },
+  async delete(id: string) {
+    return unwrapResponse<unknown>(await httpClient.delete(`/specialty-stories/${id}`));
   },
 };

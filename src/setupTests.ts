@@ -60,4 +60,4 @@ class MessageChannelMock {
   };
 }
 
-global.MessageChannel = MessageChannelMock as typeof MessageChannel;
+global.MessageChannel = MessageChannelMock as unknown as typeof MessageChannel;
