@@ -1,10 +1,10 @@
 import {
+  CheckCircleOutlined,
   DeleteOutlined,
   EditOutlined,
   FileTextOutlined,
+  InboxOutlined,
   PlusOutlined,
-  SendOutlined,
-  StopOutlined,
 } from '@ant-design/icons';
 import {
   Button,
@@ -17,6 +17,7 @@ import {
   Space,
   Table,
   Tag,
+  Tooltip,
   Typography,
   message,
 } from 'antd';
@@ -231,44 +232,58 @@ function SpecialtyStoriesPage() {
       align: 'right',
       render: (_, record) => (
         <Space>
-          <Button
-            icon={<SendOutlined />}
-            disabled={record.status === 'published'}
-            onClick={() =>
-              runAction(
-                () => specialtyStoriesApi.publish(getRecordId(record)),
-                'Đã xuất bản câu chuyện'
-              )
-            }
-          />
-          <Button
-            danger
-            icon={<StopOutlined />}
-            disabled={record.status === 'archived'}
-            onClick={() =>
-              runAction(
-                () => specialtyStoriesApi.archive(getRecordId(record)),
-                'Đã lưu trữ câu chuyện'
-              )
-            }
-          />
-          <Button icon={<EditOutlined />} onClick={() => openEdit(record)} />
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() =>
-              Modal.confirm({
-                title: 'Xóa câu chuyện này?',
-                okText: 'Xóa',
-                okButtonProps: { danger: true },
-                onOk: () =>
-                  runAction(
-                    () => specialtyStoriesApi.delete(getRecordId(record)),
-                    'Đã xóa câu chuyện'
-                  ),
-              })
-            }
-          />
+          <Tooltip title="Xuất bản">
+            <Button
+              aria-label="Xuất bản câu chuyện"
+              icon={<CheckCircleOutlined />}
+              disabled={record.status === 'published'}
+              onClick={() =>
+                runAction(
+                  () => specialtyStoriesApi.publish(getRecordId(record)),
+                  'Đã xuất bản câu chuyện'
+                )
+              }
+            />
+          </Tooltip>
+          <Tooltip title="Lưu trữ">
+            <Button
+              aria-label="Lưu trữ câu chuyện"
+              icon={<InboxOutlined />}
+              disabled={record.status === 'archived'}
+              onClick={() =>
+                runAction(
+                  () => specialtyStoriesApi.archive(getRecordId(record)),
+                  'Đã lưu trữ câu chuyện'
+                )
+              }
+            />
+          </Tooltip>
+          <Tooltip title="Chỉnh sửa">
+            <Button
+              aria-label="Chỉnh sửa câu chuyện"
+              icon={<EditOutlined />}
+              onClick={() => openEdit(record)}
+            />
+          </Tooltip>
+          <Tooltip title="Xóa">
+            <Button
+              danger
+              aria-label="Xóa câu chuyện"
+              icon={<DeleteOutlined />}
+              onClick={() =>
+                Modal.confirm({
+                  title: 'Xóa câu chuyện này?',
+                  okText: 'Xóa',
+                  okButtonProps: { danger: true },
+                  onOk: () =>
+                    runAction(
+                      () => specialtyStoriesApi.delete(getRecordId(record)),
+                      'Đã xóa câu chuyện'
+                    ),
+                })
+              }
+            />
+          </Tooltip>
         </Space>
       ),
     },
